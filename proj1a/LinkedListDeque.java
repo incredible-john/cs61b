@@ -2,7 +2,7 @@ public class LinkedListDeque<T> {
     private TNode sentinel;
     private int size;
 
-    public class TNode {
+    private class TNode {
         private T item;
         private TNode prev;
         private TNode next;
@@ -88,14 +88,14 @@ public class LinkedListDeque<T> {
             return sentinel.next.item;
         }
         // Save
-        TNode originPrev = sentinel.prev;
         TNode originNext = sentinel.next;
+        TNode originNextNextPrev = sentinel.next.next.prev;
         // Recursion
         sentinel.next.next.prev = sentinel;
         sentinel.next = sentinel.next.next;
         T res = getRecursive(index - 1);
         // Recover
-        sentinel.prev = originPrev;
+        sentinel.next.prev = originNextNextPrev;
         sentinel.next = originNext;
         return res;
     }

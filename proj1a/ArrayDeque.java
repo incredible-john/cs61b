@@ -11,7 +11,7 @@ public class ArrayDeque<T> {
         size = 0;
     }
 
-    public void resize(int capacity) {
+    private void resize(int capacity) {
         T[] newArr = (T[]) new Object[capacity];
         if (front < back) {
             System.arraycopy(arr, front + 1, newArr, 0, size);
@@ -28,12 +28,12 @@ public class ArrayDeque<T> {
     }
 
     /** Resize if size > arr.length */
-    public void extend() {
+    private void extend() {
         resize(arr.length * 2);
     }
 
     /** Resize if size/arr.length < 0.25 */
-    public void crop() {
+    private void crop() {
         resize(arr.length / 2);
     }
 
@@ -66,7 +66,7 @@ public class ArrayDeque<T> {
         if (back == front && size > 0) {
             extend();
         }
-        if(back == front && size < 0) {
+        if (back == front && size < 0) {
             back += 1;
             adjustBack();
             size += 1;
@@ -97,7 +97,7 @@ public class ArrayDeque<T> {
         return size;
     }
 
-    public int arrLength() {
+    private int arrLength() {
         return arr.length;
     }
 
@@ -118,7 +118,7 @@ public class ArrayDeque<T> {
         front += 1;
         size -= 1;
         adjustFront();
-        if ((double)size/arr.length < 0.25) {
+        if ((double) size / arr.length < 0.25) {
             crop();
         }
         return first;
@@ -131,7 +131,7 @@ public class ArrayDeque<T> {
         back -= 1;
         size -= 1;
         adjustBack();
-        if ((double)size/arr.length < 0.25 && arr.length > 8) {
+        if ((double) size / arr.length < 0.25 && arr.length > 8) {
             crop();
         }
         return last;
