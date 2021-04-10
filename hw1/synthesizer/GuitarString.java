@@ -29,7 +29,6 @@ public class GuitarString {
         while (!buffer.isFull()) {
             buffer.enqueue(Math.random() - 0.5);
         }
-        System.out.println(buffer.fillCount() + " " + buffer.capacity());
     }
 
     /* Advance the simulation one time step by performing one iteration of
