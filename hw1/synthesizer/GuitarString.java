@@ -25,7 +25,6 @@ public class GuitarString {
     public void pluck() {
         while (!buffer.isEmpty()) {
             buffer.dequeue();
-            System.out.println("enter?");
         }
         while (!buffer.isFull()) {
             buffer.enqueue(Math.random() - 0.5);
@@ -39,8 +38,6 @@ public class GuitarString {
     public void tic() {
         double front = buffer.dequeue();
         buffer.enqueue(DECAY * 0.5 * (front + buffer.peek()));
-        System.out.println("tic: " + buffer.peek());
-        System.out.println("fillcount: " + buffer.fillCount());
     }
 
     /* Return the double at the front of the buffer. */
