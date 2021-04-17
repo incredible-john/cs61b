@@ -24,11 +24,11 @@ public class Percolation {
         virtualBottom = N * N + 1;
     }
 
-    public int rowColToN(int row, int col) {
+    private int rowColToN(int row, int col) {
         return row * NN + col;
     }
 
-    public void checkBound(int row, int col) {
+    private void checkBound(int row, int col) {
         if (row > NN || row < 0 || col > NN || col < 0) {
             throw new java.lang.IndexOutOfBoundsException("Out of box");
         }

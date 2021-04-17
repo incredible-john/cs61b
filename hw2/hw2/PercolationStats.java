@@ -14,9 +14,11 @@ public class PercolationStats {
         fractions = new double[T];
         for (int i = 0; i < T; i += 1) {
             while (!p.percolates()) {
-                int row = StdRandom.uniform(N - 1);
-                int col = StdRandom.uniform(N - 1);
-                p.open(row, col);
+                int row = StdRandom.uniform(N);
+                int col = StdRandom.uniform(N);
+                if (!p.isOpen(row, col)) {
+                    p.open(row, col);
+                }
             }
             fractions[i] = (double) p.numberOfOpenSites() / (N * N);
         }
@@ -40,4 +42,11 @@ public class PercolationStats {
     public double confidenceHigh() {
         return mean() + 1.96 * stddev() / Math.sqrt(fractions.length);
     }
+
+//    public static void main(String[] args) {
+//        PercolationStats ps = new PercolationStats(100, 10, new PercolationFactory());
+//        System.out.println("mean: " + ps.mean());
+//        System.out.println("stddev: " + ps.stddev());
+//        System.out.println("confidence: " + ps.confidenceLow() + " " + ps.confidenceHigh());
+//    }
 }
