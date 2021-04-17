@@ -32,7 +32,7 @@ public class PercolationStats {
         double mean = mean();
         double[] squares = Arrays.stream(fractions).map(d -> (d - mean) * (d - mean)).toArray();
         double sqSum = Arrays.stream(squares).sum();
-        return sqSum / (squares.length - 1);
+        return Math.sqrt(sqSum / (squares.length - 1));
     }
 
     public double confidenceLow() {
