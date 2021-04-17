@@ -4,15 +4,15 @@ import edu.princeton.cs.introcs.StdRandom;
 import java.util.Arrays;
 
 public class PercolationStats {
-    private final double[] fractions;
+    private double[] fractions;
 
     public PercolationStats(int N, int T, PercolationFactory pf) {
         if (N <= 0 || T <= 0) {
             throw new java.lang.IllegalArgumentException();
         }
-        Percolation p = pf.make(N);
         fractions = new double[T];
         for (int i = 0; i < T; i += 1) {
+            Percolation p = pf.make(N);
             while (!p.percolates()) {
                 int row = StdRandom.uniform(N);
                 int col = StdRandom.uniform(N);
@@ -44,7 +44,7 @@ public class PercolationStats {
     }
 
 //    public static void main(String[] args) {
-//        PercolationStats ps = new PercolationStats(100, 10, new PercolationFactory());
+//        PercolationStats ps = new PercolationStats(100, 10000, new PercolationFactory());
 //        System.out.println("mean: " + ps.mean());
 //        System.out.println("stddev: " + ps.stddev());
 //        System.out.println("confidence: " + ps.confidenceLow() + " " + ps.confidenceHigh());
