@@ -80,7 +80,7 @@ public class TestSolver {
     }
 
 
-     public static Board readBoard(String filename) {
+    public static Board readBoard(String filename) {
         In in = new In(filename);
         int N = in.readInt();
         int[][] tiles = new int[N][N];
@@ -108,7 +108,7 @@ public class TestSolver {
 
     @Test(timeout = 40000)
     public void test3x3BoardPuzzles() {
-        for (int i = 0; i <= 26; i += 1) {
+        for (int i = 0; i <= 30; i += 1) {
             String pnum = String.format("%02d", i);
             String puzzleName = "input/puzzle3x3-" + pnum + ".txt";
             Board b = readBoard(puzzleName);

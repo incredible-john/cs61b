@@ -1,11 +1,8 @@
 package hw4.puzzle;
 
 import java.util.ArrayDeque;
-import java.util.ArrayList;
 import java.util.Comparator;
-import java.util.Iterator;
-import edu.princeton.cs.algs4.*;
-import edu.princeton.cs.algs4.StdOut;
+import edu.princeton.cs.algs4.MinPQ;
 
 public class Solver {
 
@@ -13,11 +10,11 @@ public class Solver {
     private final int minMoves;
 
     private static class SearchNode {
-        public WorldState worldState;
-        public int moves;
-        public SearchNode prevSearchNode;
+        private WorldState worldState;
+        private int moves;
+        private SearchNode prevSearchNode;
 
-        public SearchNode(WorldState ws, int m, SearchNode prev) {
+        SearchNode(WorldState ws, int m, SearchNode prev) {
             worldState = ws;
             moves = m;
             prevSearchNode = prev;
@@ -42,7 +39,8 @@ public class Solver {
         while (!nextBest.worldState.isGoal()) {
             for (WorldState n: nextBest.worldState.neighbors()) {
                 SearchNode neighborNode = new SearchNode(n, nextBest.moves + 1, nextBest);
-                if (nextBest.prevSearchNode == null || !neighborNode.worldState.equals(nextBest.prevSearchNode.worldState)) {
+                if (nextBest.prevSearchNode == null
+                        || !neighborNode.worldState.equals(nextBest.prevSearchNode.worldState)) {
                     pq.insert(neighborNode);
                 }
             }

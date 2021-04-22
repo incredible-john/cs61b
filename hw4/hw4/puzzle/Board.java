@@ -12,9 +12,6 @@ public class Board implements WorldState {
     }
 
     private int[] valToij(int val, int N) {
-        if (val == -1) {
-            return new int[]{N - 1, N - 1};
-        }
         return new int[]{val / N, val % N};
     }
 
@@ -78,7 +75,7 @@ public class Board implements WorldState {
         int count = 0;
         for(int i = 0; i < N; i += 1) {
             for (int j = 0; j < N; j += 1) {
-                if (board[i][j] != ijTo1D(i, j, N) + 1) {
+                if (board[i][j] != ijTo1D(i, j, N) + 1 && board[i][j] != 0) {
                     count += 1;
                 }
             }
@@ -91,9 +88,11 @@ public class Board implements WorldState {
         for(int i = 0; i < N; i += 1) {
             for (int j = 0; j < N; j += 1) {
                 int val = board[i][j];
-                int x = valToij(val-1, N)[0];
-                int y = valToij(val-1, N)[1];
-                count = count + Math.abs(x - i) + Math.abs(y - j);
+                if (val-1 != -1) {
+                    int x = valToij(val-1, N)[0];
+                    int y = valToij(val-1, N)[1];
+                    count = count + Math.abs(x - i) + Math.abs(y - j);
+                }
             }
         }
         return count;
@@ -104,8 +103,9 @@ public class Board implements WorldState {
     }
 
     public boolean equals(Object y) {
-        for(int i = 0; i < N; i += 1) {
-            for (int j = 0; j < N; j += 1) {
+        int NN = Math.max(((Board) y).size(), N);
+        for(int i = 0; i < NN; i += 1) {
+            for (int j = 0; j < NN; j += 1) {
                 if (board[i][j] != ((Board) y).tileAt(i, j)) {
                     return false;
                 }
