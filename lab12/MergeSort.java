@@ -81,6 +81,9 @@ public class MergeSort {
             Queue<Item> items) {
         // Your code here!
         Queue<Queue<Item>> sortedItems = makeSingleItemQueues(items);
+        if (sortedItems.size() == 0) {
+            return items;
+        }
         while (sortedItems.size() != 1) {
             int curSize = sortedItems.size();
             for (int i = 0; i < curSize / 2; i += 1) {
@@ -93,12 +96,12 @@ public class MergeSort {
 
     public static void main(String[] args) {
         Queue<String> students = new Queue<String>();
-        students.enqueue("a");
-        students.enqueue("b");
-        students.enqueue("z");
-        students.enqueue("c");
-        students.enqueue("r");
-        students.enqueue("t");
+//        students.enqueue("a");
+//        students.enqueue("b");
+//        students.enqueue("z");
+//        students.enqueue("c");
+//        students.enqueue("r");
+//        students.enqueue("t");
         System.out.println(students);
         Queue<String> sortedStudents = mergeSort(students);
         System.out.println("origin: " + students);
