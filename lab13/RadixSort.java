@@ -17,9 +17,10 @@ public class RadixSort {
      *
      * @return String[] the sorted array
      */
+    private static int maxLength = 0;
+
     public static String[] sort(String[] asciis) {
         // TODO: Implement LSD Sort
-        int maxLength = 0;
         String[] ans = asciis.clone();
         for (String s: asciis) {
             maxLength = Math.max(maxLength, s.length());
@@ -39,11 +40,6 @@ public class RadixSort {
     private static void sortHelperLSD(String[] asciis, int index) {
         // Optional LSD helper method for required LSD radix sort
         // Counting Sort
-        // find maxLength
-        int maxLength = 0;
-        for (String s : asciis) {
-            maxLength = Math.max(maxLength, s.length());
-        }
         // padding to the right
         for (int i = 0; i < asciis.length; i += 1) {
             asciis[i] = String.format("%-" + maxLength + "s", asciis[i]).replace(' ', (char) 0);
@@ -99,9 +95,10 @@ public class RadixSort {
     }
 
     public static void main(String[] args) {
-        String[] origin = {"a", "aa", "je", "z", "hello", "world", "wall", "god"};
-        String[] sorted = sort(origin);
-        System.out.println("origin: " + Arrays.toString(origin));
-        System.out.println("sorted: " + Arrays.toString(sorted));
+//        String[] origin = {"a", "aa", "je", "z", "hello", "world", "wall", "god", "", " "};
+//        String[] origin = {"3","2","a","b"};
+//        String[] sorted = sort(origin);
+//        System.out.println("origin: " + Arrays.toString(origin));
+//        System.out.println("sorted: " + Arrays.toString(sorted));
     }
 }
